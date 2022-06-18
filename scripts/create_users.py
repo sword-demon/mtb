@@ -15,9 +15,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'mtb.settings')
 # 启动django
 django.setup()
 
+# 这个一定要放下面 ，否则加载不到模型
 from apps.base import models
 
-models.UserInfo.objects.create(
-    username='wujie',
-    password='123123'
-)
+models.UserInfo.objects.create(username="wujie", password="123123")

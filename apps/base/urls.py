@@ -15,6 +15,7 @@ router = routers.SimpleRouter()
 
 urlpatterns = [
     path('auth/', account.AuthView.as_view()),
+    path('test/', account.TestView.as_view()),
 ]
 
 urlpatterns += router.urls

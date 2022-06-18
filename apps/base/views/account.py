@@ -40,9 +40,18 @@ class AuthView(APIView):
         }
         # 构建payload
         payload = {
-            'user_id': username.id,
+            'user_id': user_object.id,
             'username': username,
             'exp': datetime.datetime.now() + datetime.timedelta(minutes=5)  # 超时时间
         }
         token = jwt.encode(payload=payload, key=settings.SECRET_KEY, algorithm="HS256", headers=headers)
         return Response({"code": return_code.SUCCESS, "data": {"token": token, "username": username}})
+
+
+class TestView(APIView):
+
+    def get(self, request, *args, **kwargs):
+        print(request.user.user_id)
+        print(request.user.username)
+        print(request.user.exp)
+        return Response({"code": return_code.SUCCESS})
